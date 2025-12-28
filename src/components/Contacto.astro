@@ -1,0 +1,18 @@
+---
+import { Image } from 'astro:assets'
+import { images } from '../assets/images/carrusel/images.js'
+---
+
+<div>
+    <div class="relative w-full h-auto md:h-[300px] lg:h-[380px] overflow-hidden">
+        <Image src={images.imgContacto} width={1920} height={1080}
+            class="w-full h-auto object-cover"
+            alt="Contacto" />
+        <div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-3xl md:text-5xl font-bold drop-shadow-lg">
+                <h2>Contáctanos</h2>
+                <a href="#">Whatsap</a>
+            </div>
+        </div>
+    </div>
+</div>

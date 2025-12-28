@@ -1,0 +1,63 @@
+<header class="">
+    <div class="flex justify-between items-center p-4 md:px-8 shadow-md w-full lg:bg-[var(--color-primary)]">
+        <!-- LOGO -->
+        <div class="logo-header">
+            <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="/logo..jpg" class="h-7" alt="Logo" />
+                <span class="self-center text-xl text-heading font-semibold whitespace-nowrap">Logo</span>
+            </a>
+        </div>
+        
+        <!-- REDES SOCIALES -->
+        <div class="social-header flex gap-4">
+            <!-- Redireccion a Whatssap con mensaje perzonalido -->
+            <a href="https://api.whatsapp.com/send?phone=51924823729&text=Hola%20estoy%20interesado%20he%20visto%20proyectos%20en%20su%20web%20Edifica" target="_blank">
+                <img src="/whatsapp.svg" alt="WhatsApp" class="w-8 h-8">
+            </a>
+        </div>
+        
+        <!-- MENÚ -->
+        <nav class="md:block">
+            <!-- Botón hamburguesa (solo móvil) -->
+            <button id="menuBtn" class="md:hidden text-2xl p-2">☰</button>
+            
+            <!-- Lista del menú -->
+            <ul id="menu" class="
+                hidden 
+                fixed inset-0 z-50 bg-white 
+                flex-col p-8 gap-6
+                md:flex md:static md:bg-transparent 
+                md:flex-row md:p-0 md:gap-8
+            ">
+                <!-- Botón cerrar (solo móvil) -->
+                <li class="md:hidden self-end mb-8">
+                    <button id="closeBtn" class="text-3xl font-bold">×</button>
+                </li>
+                
+                <!-- Links del menú -->
+                <li><a href="#inicio" class="block px-4 py-2 text-lg hover:bg-gray-100 md:hover:text-blue-600 rounded-md transition-colors">Inicio</a></li>
+                <li><a href="#nosotros" class="block px-4 py-2 text-lg hover:bg-gray-100 md:hover:text-blue-600 rounded-md transition-colors">Nosotros</a></li>
+                <li><a href="#servicios" class="block px-4 py-2 text-lg hover:bg-gray-100 md:hover:text-blue-600 rounded-md transition-colors">Servicios</a></li>
+                <li><a href="#propiedades" class="block px-4 py-2 text-lg hover:bg-gray-100 md:hover:text-blue-600 rounded-md transition-colors">Propiedades</a></li>
+                <li><a href="#contacto" class="block px-4 py-2 text-lg hover:bg-gray-100 md:hover:text-blue-600 rounded-md transition-colors">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<script>
+    const btn = document.getElementById('menuBtn'); //Botón hamburguesa (solo móvil) 
+    const menu = document.getElementById('menu');   //Lista del menú
+    const closeBtn = document.getElementById('closeBtn'); // botón cerrar
+
+    //  Evento del Botón hamburguesa
+    //  Cambia estado de la lista
+    btn?.addEventListener('click', () => {
+        menu?.classList.toggle('hidden');
+    });
+
+    //  Cerrar menú al hacer click
+    //  Oculta la lista
+    closeBtn?.addEventListener('click', () => {
+        menu?.classList.add('hidden');
+    }); 
+</script>

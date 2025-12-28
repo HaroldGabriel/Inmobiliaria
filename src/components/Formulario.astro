@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets'
+import { images } from '../assets/images/carrusel/images.js'
+---
+<div class="bg-gray-200">
+    <div class="flex flex-col lg:flex-row gap-15 p-5 px-20 justify-center items-center">
+        <div>
+            <Image src={images.carrusel2} width={600} height={400} alt={'hola'}/>
+            <span class="text-sm text-gray-600">Imagen de formulario</span>
+        </div>
+        <div class="bg-red-200 flex flex-col p-5 rounded-lg shadow-lg w-full md:w-96 lg:w-96">
+            <!---   Formulario  -->
+            <!---   Conectado a google sheets  -->
+            <form action="" method="POST" id="form-lead">
+                <h2>Contáctanos</h2> 
+                <div class="flex flex-col pt-2">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" class="px-2 bg-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nombres Completos" required>
+                </div>
+                <div class="flex flex-col pt-2">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" class="px-2 bg-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Correo o Numero Telefonico" required>
+                </div>
+                <div class="flex flex-col pt-2">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" class="px-2 bg-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                </div>
+                <div class="flex justify-center pt-2">
+                    <!--  Button disparador del evento para enviar datos hacia google sheets -->
+                    <button type="submit" class="bg-white rounded hover:cursor-pointer hover:scale-105">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    // Guardamos el enlace a app web que vincula el google sheets
+    const url = 'https://script.google.com/macros/s/AKfycbyzBoRU929cBqXTuPXoZC634wNPMWv2wuWUGt1awh7tblPziR0BQAjbTNb3eigfrloa/exec';
+    //obtenemos el formulario que hicimos.
+    const form = document.getElementById('form-lead') as HTMLFormElement;
+    //ahora vamos a escuchar el evento de envío del formulario.
+    form?.addEventListener('submit', async e =>{
+        //prevenimos que se recargue la pagina::
+        e.preventDefault()
+        // comenzamos el manejo de errores:
+        try {
+            //hacemos la solicitud usando fetch
+            const response = await fetch(url, {
+                method: 'POST',
+                //enviamos el formulario
+                body: new FormData(form)
+            })
+            //mensaje visual para la web
+            //solo para pruebas no recomendado en produccion
+            alert('Enviado correctamente.')
+        } catch (error : any) {
+            //mensaje de error en caso falle el envío.
+            console.error('ERROR: ', error.message)
+            //solo para pruebas no recomendado en produccion
+            alert('Error al enviar formulario')
+        }
+    })
+</script>

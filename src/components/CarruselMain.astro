@@ -1,0 +1,78 @@
+---
+import { Image } from 'astro:assets'
+import { images } from '../assets/images/carrusel/images.js'
+---
+
+<div class="relative w-full overflow-hidden h-[250px] md:h-[600px] lg:h-[680px]">
+  <!-- SLIDES -->
+  <!-- Disparador del evento startAutoplay() -->
+  <div id="carousel-track"
+       class="flex h-full transition-transform duration-700 ease-in-out">
+
+    <Image src={images.carrusel1} width={1920} height={800}
+      class="w-full h-full flex-shrink-0 object-cover"
+      alt="Slide 1" />
+
+    <Image src={images.carrusel2} width={1920} height={800}
+      class="w-full h-full flex-shrink-0 object-cover"
+      alt="Slide 2" />
+
+    <Image src={images.carrusel3} width={1920} height={800}
+      class="w-full h-full flex-shrink-0 object-cover"
+      alt="Slide 3" />
+  </div>
+
+  <!-- BOTONES -->
+  <!-- BOTON ANTERIOR -->
+  <button id="prev"
+    class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 cursor-pointer text-white px-2 py-1 md:px-3 md:py-2 rounded-full text-xl md:text-2xl z-10">
+    ‹
+  </button>
+  <!-- BOTON SIGUIENTE -->
+  <button id="next"
+    class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 cursor-pointer text-white px-2 py-1 md:px-3 md:py-2 rounded-full text-xl md:text-2xl z-10">
+    ›
+  </button>
+</div>
+
+<script>
+    const track = document.getElementById('carousel-track');
+    const slides = track?.children;
+    const total = slides?.length || 0;
+    let index = 0;
+    let autoplayInterval: NodeJS.Timeout;
+
+    //Funcion para transicion suave del SLIDER
+    function update() {
+    if (track) {
+        track.style.transform = `translateX(-${index * 100}%)`;
+    }
+    }
+    //Funcion recorrido SLIDER desde el index actual
+    function startAutoplay() {
+        autoplayInterval = setInterval(() => {
+            index = (index + 1) % total;
+            update();
+        }, 4000);
+    }
+    //Funcion para reiniciar autoplayInterval de la funcion startAutoplay()
+    function stopAutoplay() {
+        clearInterval(autoplayInterval);
+    }
+    //Evento SIGUIENTE SLIDER
+    document.getElementById('next')?.addEventListener('click', () => {
+        stopAutoplay();
+        index = (index + 1) % total;
+        update();
+        startAutoplay();
+    });
+    //Evento SIGUIENTE SLIDER
+    document.getElementById('prev')?.addEventListener('click', () => {
+        stopAutoplay();
+        index = (index - 1 + total) % total;
+        update();
+        startAutoplay();
+    });
+    //Funcion recorrido SLIDER al inicio
+    startAutoplay();
+</script>
