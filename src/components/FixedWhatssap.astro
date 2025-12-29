@@ -1,0 +1,15 @@
+---
+import { Image } from 'astro:assets'
+import LogoWhatsap from '../assets/images/SocialLogos/whatsapp-svgrepo-com.svg'
+---
+
+<div class="fixed bottom-0 right-0 bg-blue-500 z-1 lg:mb-4 lg:mr-2 rounded">
+    <div class="flex justify-center items-center lg:gap-8 p-2">
+        <span class="">Contactanos</span>
+        <Image src={LogoWhatsap} 
+        width={80} 
+        height={80}
+        class="lg:w-16"
+        alt="logo WhatsApp"/>
+    </div>
+</div>

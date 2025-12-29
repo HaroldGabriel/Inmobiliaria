@@ -1,0 +1,27 @@
+---
+const { icon, title, description, hidden = false } = Astro.props;
+---
+
+<div
+  class={`
+    group transform-gpu relative overflow-hidden flex flex-col items-center text-center cursor-pointer
+    rounded-[20px] p-6
+    shadow-[0_5px_20px_rgba(0,0,0,0.08)]
+    transition-transform transition-shadow duration-300 ease-in-out
+    hover:-translate-y-[10px]
+    hover:shadow-[0_15px_40px_rgba(0,0,0,0.12)]
+    antialiased
+    ${hidden ? "lg:hidden xl:block" : ""}
+  `}
+>
+  <span
+    class="pointer-events-none absolute top-0 left-0 h-[4px] w-full origin-left scale-x-0
+           bg-gradient-to-r from-[#1a3a34] to-[#d4af37]
+           transition-transform duration-300 ease-in-out
+           group-hover:scale-x-100"
+  ></span>
+
+  <div class="feature-icon text-4xl mb-4">{icon}</div>
+  <h3 class="text-xl font-semibold">{title}</h3>
+  <p class="mt-4 text-gray-600">{description}</p>
+</div>
